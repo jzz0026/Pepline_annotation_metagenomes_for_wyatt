@@ -1,5 +1,6 @@
+## README
 1. Extract hmm domains from foam and transform fastq to fasta
-## extract hmm domains of CPS and CH4only from foam
+# extract hmm domains of CPS and CH4only from foam
 cd /global/projectb/scratch/jzz0026/wyatt_wetland
 python extract_hmm-CPS.py ## CPS domains
 python extract_hmm-CH4.py ## CH4 domains
@@ -9,7 +10,7 @@ python extract_hmm-CH4.py ## CH4 domains
 bash run_prodigal.sh
 
 3. Run hmmsearch for all metagenomes (results: *.tab)
-## write script
+# write script
 write_scipt_to_fasta_prodigal_hmmsearch.ipynb
 bash submit.sh
 
