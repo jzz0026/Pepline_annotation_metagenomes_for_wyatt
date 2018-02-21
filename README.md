@@ -25,6 +25,9 @@
 4. Transform hmm tab result into summary and filered table (results: *.result and *.summary)
 
   ls *.tab | xargs -I {} sbatch -t 2880 --mincpus=1 --mem=6G -D $PWD -J test --wrap="python Filter_count_hmm_result.py {}"
+  
+5. submit cmd to get query list
+  for i in $(ls *.tab | cut -d '.' -f 1) ; do sbatch -t 2880 --mincpus=1 --mem=6G -D $PWD -J get_querylist --wrap="cat $i.tab | awk -F \" \" '{print $1}' | sed 's/_.*$//g' | uniq | sed '$d' > $i.querylist" ; done
 
 
 sbatch -t 2880 --mincpus=4 --mem=24G -D $PWD -J test_grep --wrap="cat 1047887_Browns_ThreeSqA_D1_extract_CH4_hmm.querylist | xargs -I {} grep {} 1047887_Browns_ThreeSqA_D1.fasta -A 1 > 
