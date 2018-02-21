@@ -7,11 +7,13 @@
   python extract_hmm-CH4.py ## CH4 domains
 
 2. ORF prediction for all metagenomes (results: *_orfs.fasta) 
-  /global/projectb/scratch/jzz0026/wyatt_wetland/hmmsearch
+  cd /global/projectb/scratch/jzz0026/wyatt_wetland/hmmsearch
+  
   bash run_prodigal.sh
 
 3. Run hmmsearch for all metagenomes (results: *.tab)
   write_scipt_to_fasta_prodigal_hmmsearch.ipynb # write script
+  
   bash submit.sh
 
 4. Transform hmm tab result into summary and filered table (results: *.result and *.summary)
