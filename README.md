@@ -1,5 +1,5 @@
 ## README
-#1. Extract hmm domains from foam and transform fastq to fasta
+##1. Extract hmm domains from foam and transform fastq to fasta
 
   cd /global/projectb/scratch/jzz0026/wyatt_wetland # extract hmm domains of CPS and CH4only from foam
 
@@ -8,25 +8,25 @@
   python extract_hmm-CH4.py ## CH4 domains
   
 
-2. ORF prediction for all metagenomes (results: *_orfs.fasta) 
+##2. ORF prediction for all metagenomes (results: *_orfs.fasta) 
 
   cd /global/projectb/scratch/jzz0026/wyatt_wetland/hmmsearch
   
   bash run_prodigal.sh
   
 
-3. Run hmmsearch for all metagenomes (results: *.tab)
+##3. Run hmmsearch for all metagenomes (results: *.tab)
 
   write_scipt_to_fasta_prodigal_hmmsearch.ipynb # write script
   
   bash submit.sh
   
 
-4. Transform hmm tab result into summary and filered table (results: *.result and *.summary)
+##4. Transform hmm tab result into summary and filered table (results: *.result and *.summary)
 
   ls *.tab | xargs -I {} sbatch -t 2880 --mincpus=1 --mem=6G -D $PWD -J test --wrap="python Filter_count_hmm_result.py {}"
   
-5. submit cmd to get query list
+##5. submit cmd to get query list
   for i in $(ls *.tab | cut -d '.' -f 1) ; do sbatch -t 2880 --mincpus=1 --mem=6G -D $PWD -J get_querylist --wrap="cat $i.tab | awk -F \" \" '{print $1}' | sed 's/_.*$//g' | uniq | sed '$d' > $i.querylist" ; done
 
 
