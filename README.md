@@ -32,3 +32,6 @@
 
 sbatch -t 2880 --mincpus=4 --mem=24G -D $PWD -J test_grep --wrap="cat 1047887_Browns_ThreeSqA_D1_extract_CH4_hmm.querylist | xargs -I {} grep {} 1047887_Browns_ThreeSqA_D1.fasta -A 1 > 
 1047887_Browns_ThreeSqA_D1_extract_test.grep"
+
+filterbyname.sh in=1047887_Browns_ThreeSqA_D1.fasta names=1047887_Browns_ThreeSqA_D1_extract_CH4_hmm.querylist include=t out=test.fasta
+
