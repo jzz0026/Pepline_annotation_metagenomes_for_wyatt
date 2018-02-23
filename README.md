@@ -1,5 +1,5 @@
 ## README
-1. Extract hmm domains from foam and transform fastq to fasta
+#1. Extract hmm domains from foam and transform fastq to fasta
 
   cd /global/projectb/scratch/jzz0026/wyatt_wetland # extract hmm domains of CPS and CH4only from foam
 
