@@ -27,11 +27,7 @@
   ls *.tab | xargs -I {} sbatch -t 2880 --mincpus=1 --mem=6G -D $PWD -J test --wrap="python Filter_count_hmm_result.py {}"
   
 5. submit cmd to get query list
-  for i in $(ls *.tab | cut -d '.' -f 1) ; do sbatch -t 2880 --mincpus=1 --mem=6G -D $PWD -J get_querylist --wrap="cat $i.tab | awk -F \" \" '{print $1}' | sed 's/_.*$//g' | uniq | sed '$d' > $i.querylist" ; done
+  for i in $(ls *.tab | cut -d '.' -f 1) ; do sbatch -t 2880 --mincpus=1 --mem=6G -D $PWD -J get_querylist --wrap="cat $i.tab | awk -F \" \" '{print $1}' | sed 's/_.*$//g' | sed '$d' | sort | uniq > $i.querylist" ; done
 
-
-sbatch -t 2880 --mincpus=4 --mem=24G -D $PWD -J test_grep --wrap="cat 1047887_Browns_ThreeSqA_D1_extract_CH4_hmm.querylist | xargs -I {} grep {} 1047887_Browns_ThreeSqA_D1.fasta -A 1 > 
-1047887_Browns_ThreeSqA_D1_extract_test.grep"
-
-filterbyname.sh in=1047887_Browns_ThreeSqA_D1.fasta names=1047887_Browns_ThreeSqA_D1_extract_CH4_hmm.querylist include=t out=test.fasta
-
+6. extract sequences from fasta file by matching header ID list
+for i in $(ls *.querylist | sed 's/_extract_CH4_hmm.querylist//') ; do sbatch -t 2880 --mincpus=1 --mem=6G -D $PWD -J test --wrap="module load bbtools/prod-v37.76 ; filterbyname.sh in=${i}.fasta names=${i}_extract_CH4_hmm.querylist include=t out=${i}_extract_CH4_hmm.fasta";  done
