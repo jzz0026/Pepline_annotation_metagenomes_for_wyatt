@@ -33,3 +33,9 @@
 6. extract sequences from fasta file by matching header ID list
 
   for i in $(ls *.querylist | sed 's/_extract_CH4_hmm.querylist//') ; do sbatch -t 2880 --mincpus=1 --mem=6G -D $PWD -J test --wrap="module load bbtools/prod-v37.76 ; filterbyname.sh in=${i}.fasta names=${i}_extract_CH4_hmm.querylist include=t out=${i}_extract_CH4_hmm.fasta";  done
+
+
+module unload gcc
+module load gcc/6.3.0 
+
+/global/projectb/scratch/jzz0026/tools/kaiju/bin/kaiju -t /global/projectb/scratch/jzz0026/tools/kaiju/kaijudb/nodes.dmp -f /global/projectb/scratch/jzz0026/tools/kaiju/kaijudb/kaiju_db_nr.fmi -z 32 -i Salt_Pond_MetaGSF2_A_D1_MG_DASTool_bins_concoct_out.23_orf.fa -o Salt_Pond_MetaGSF2_A_D1_MG_DASTool_bins_concoct_out.23.out
