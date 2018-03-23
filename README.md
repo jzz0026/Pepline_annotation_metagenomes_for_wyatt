@@ -39,3 +39,5 @@ module unload gcc
 module load gcc/6.3.0 
 
 /global/projectb/scratch/jzz0026/tools/kaiju/bin/kaiju -t /global/projectb/scratch/jzz0026/tools/kaiju/kaijudb/nodes.dmp -f /global/projectb/scratch/jzz0026/tools/kaiju/kaijudb/kaiju_db_nr.fmi -z 32 -i Salt_Pond_MetaGSF2_A_D1_MG_DASTool_bins_concoct_out.23_orf.fa -o Salt_Pond_MetaGSF2_A_D1_MG_DASTool_bins_concoct_out.23.out
+
+zhou
